@@ -25,7 +25,7 @@ Standard
 # How To Use
 
 # Contributors
-1. Anish Dhawan
-2. Matthew Putra
-3. Ryan Huang
-4. Sofia Thomas
+1. Anish Dhawan (ad99@uw.edu)
+2. Matthew Putra (putra@uw.edu)
+3. Ryan Huang (ryanh42@uw.edu)
+4. Sofia Thomas (sofiat21@uw.edu)
