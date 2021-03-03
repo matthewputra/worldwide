@@ -42,9 +42,12 @@ func main() {
 	ctx := &handlers.HandlerContext{SigningKey: "key", SessionStore: nil, UserStore: users.NewMySQLStore(db)}
 	mux.HandleFunc("/v1/signup", ctx.UsersSignUpHandler)
 	mux.HandleFunc("/v1/login", ctx.UserLoginHandler)
+	//
+	sqlStore := users.NewSqlStore(db)
+	sqlStore.
 
-	// TODO: remove this handler
-	mux.HandleFunc("/test", func(w http.ResponseWriter, r *http.Request) {
+		// TODO: remove this handler
+		mux.HandleFunc("/test", func(w http.ResponseWriter, r *http.Request) {
 		_, _ = w.Write([]byte("Test"))
 	})
 	log.Printf("Server is listening at %s...", ADDR)
