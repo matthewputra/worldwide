@@ -4,7 +4,7 @@ import (
 	"database/sql"
 	"fmt"
 	"github.com/matthewputra/worldwide/server/gateway/handlers"
-	"github.com/matthewputra/worldwide/server/models/users"
+	"github.com/matthewputra/worldwide/server/gateway/models/users"
 	"log"
 	"net/http"
 	"os"
@@ -40,7 +40,7 @@ func main() {
 
 	// Handlers for logging in and signing up new customers/drivers
 	ctx := &handlers.HandlerContext{SigningKey: "key", SessionStore: nil, UserStore: users.NewMySQLStore(db)}
-	mux.HandleFunc("/v1/signup", ctx.UserSignUpHandler)
+	mux.HandleFunc("/v1/signup", ctx.UsersSignUpHandler)
 	mux.HandleFunc("/v1/login", ctx.UserLoginHandler)
 
 	// TODO: remove this handler
