@@ -20,7 +20,10 @@ func main() {
 	}
 
 	mux := http.NewServeMux()
-	// TODO: Add handlers here
+	// TODO: remove this handler
+	mux.HandleFunc("/test", func(w http.ResponseWriter, r *http.Request) {
+		_, _ = w.Write([]byte("Test"))
+	})
 	log.Printf("Server is listening at %s...", ADDR)
 	log.Fatal(http.ListenAndServeTLS(ADDR, TLSCERT, TLSKEY, mux))
 }
