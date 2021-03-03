@@ -1,6 +1,7 @@
 package users
 
 import (
+	"errors"
 	"fmt"
 	"net/mail"
 	"strings"
@@ -132,5 +133,20 @@ func (u *User) Authenticate(password string) error {
 	if err != nil {
 		return err
 	}
+	return nil
+}
+
+//ApplyUpdates applies the updates to the user. An error
+//is returned if the updates are invalid
+func (u *User) ApplyUpdates(updates *Updates) error {
+	// Check updates valid or not
+	if updates == nil {
+		return errors.New("Given updates are nil")
+	}
+	if updates.FirstName == "" && updates.LastName == "" {
+		return errors.New("Given updates are empty")
+	}
+	u.FirstName = updates.FirstName
+	u.LastName = updates.LastName
 	return nil
 }
