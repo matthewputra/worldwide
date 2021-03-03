@@ -13,7 +13,7 @@ type SqlStore struct {
 }
 
 // Constructs a new SqlStore
-func NewSqlStore(db *sql.DB) *SqlStore {
+func NewMySQLStore(db *sql.DB) *SqlStore {
 	return &SqlStore{db: db}
 }
 

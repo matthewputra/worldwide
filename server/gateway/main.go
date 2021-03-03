@@ -3,6 +3,7 @@ package main
 import (
 	"database/sql"
 	"fmt"
+	"github.com/matthewputra/worldwide/server/gateway/handlers"
 	"github.com/matthewputra/worldwide/server/models/users"
 	"log"
 	"net/http"
@@ -38,9 +39,9 @@ func main() {
 	mux := http.NewServeMux()
 
 	// Handlers for logging in and signing up new customers/drivers
-	sqlStore := users.NewMySQLStore(db)
-	mux.HandleFunc("/signup", sqlStore.UserSignUpHandler)
-	mux.HandleFunc("/login", ctx.UserLoginHandler)
+	ctx := &handlers.HandlerContext{SigningKey: "key", SessionStore: nil, UserStore: users.NewMySQLStore(db)}
+	mux.HandleFunc("/v1/signup", ctx.UserSignUpHandler)
+	mux.HandleFunc("/v1/login", ctx.UserLoginHandler)
 
 	// TODO: remove this handler
 	mux.HandleFunc("/test", func(w http.ResponseWriter, r *http.Request) {

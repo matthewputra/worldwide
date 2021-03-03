@@ -1,9 +1,12 @@
 package handlers
 
-import "github.com/matthewputra/worldwide/servers/gateway/models/users"
+import (
+	"github.com/matthewputra/worldwide/server/gateway/models/users"
+	"github.com/matthewputra/worldwide/server/gateway/sessions"
+)
 
 type HandlerContext struct {
-	Key          string
+	SigningKey   string
 	SessionStore sessions.Store
 	UserStore    users.Store
 }
