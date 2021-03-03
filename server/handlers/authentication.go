@@ -3,6 +3,7 @@ package handlers
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/matthewputra/worldwide/server/models/users"
 	"net"
 	"net/http"
 	"strings"
@@ -10,7 +11,7 @@ import (
 )
 
 // UserSignUpHandler handles requests for creating a new user
-func UserSignUpHandler(w http.ResponseWriter, r *http.Request) {
+func (sqlStore *MySqlStore) UserSignUpHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "POST" {
 		// Check Content-Type is JSON
 		if r.Header.Get("Content-Type") != "application/json" {
@@ -43,7 +44,7 @@ func UserSignUpHandler(w http.ResponseWriter, r *http.Request) {
 		}
 
 		// Insert new user
-		insertedUser, err := ctx.UserStore.Insert(validatedUser)
+		insertedUser, err := sqlStore.UserStore.Insert(validatedUser)
 		if err != nil {
 			// 500
 			http.Error(w, "Error inserting user - "+err.Error(), http.StatusInternalServerError)
