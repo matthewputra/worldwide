@@ -7,12 +7,6 @@ import (
 //ErrUserNotFound is returned when the user can't be found
 var ErrUserNotFound = errors.New("user not found")
 
-var ErrInsertFailed = errors.New("fail to insert new user")
-
-var ErrUpdateFailed = errors.New("fail to update user")
-
-var ErrDeleteFailed = errors.New("fail to delete user")
-
 //Store represents a store for Users
 type Store interface {
 	//GetByID returns the User with the given ID
@@ -35,7 +29,6 @@ type Store interface {
 	//Delete deletes the user with the given ID
 	Delete(id int64) error
 
-	//InsertLogInInfo inserts the user id and ip address into
-	//the logInInfo db with the current time
-	InsertLogInInfo(id int64, ip string) error
+	//InsertLog inserts sign-in log to logs in the database
+	InsertLog(userID int64, ipAddr string) error
 }

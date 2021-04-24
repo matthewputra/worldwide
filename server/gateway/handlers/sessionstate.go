@@ -1,8 +1,8 @@
 package handlers
 
 import (
-	"github.com/matthewputra/worldwide/server/gateway/models/users"
 	"time"
+	"worldwide/server/gateway/models/users"
 )
 
 // SessionState stores the start time and the user information

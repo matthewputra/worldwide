@@ -2,17 +2,13 @@ package handlers
 
 import (
 	"encoding/json"
-	"fmt"
-	"github.com/matthewputra/worldwide/server/gateway/models/users"
-	"github.com/matthewputra/worldwide/server/gateway/sessions"
 	"net/http"
-	"time"
+	"worldwide/server/gateway/models/users"
 )
 
 // UserSignUpHandler handles requests for creating a new customer
 func (ctx *HandlerContext) UserSignUpHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "POST" {
-		// Check Content-Type is JSON
 		if r.Header.Get("Content-Type") != "application/json" {
 			// 415 Invalid Request Body
 			http.Error(w, "Invalid Content-Type", http.StatusUnsupportedMediaType)
@@ -27,7 +23,6 @@ func (ctx *HandlerContext) UserSignUpHandler(w http.ResponseWriter, r *http.Requ
 			return
 		}
 
-		// Validate new user
 		validateErr := createdUser.Validate()
 		if validateErr != nil {
 			// 400 Bad Request
@@ -42,7 +37,6 @@ func (ctx *HandlerContext) UserSignUpHandler(w http.ResponseWriter, r *http.Requ
 			return
 		}
 
-		// Insert new user
 		insertedUser, err := ctx.UserStore.Insert(validatedUser)
 		if err != nil {
 			// 500
@@ -50,8 +44,9 @@ func (ctx *HandlerContext) UserSignUpHandler(w http.ResponseWriter, r *http.Requ
 			return
 		}
 
+		// TODO: REMOVE THIS
 		// Begin Session
-		ctx.newSession(insertedUser, w)
+		// ctx.newSession(insertedUser, w)
 
 		// Gets the newly inserted user
 		validUser, _ := ctx.UserStore.GetByID(insertedUser.ID)
@@ -60,7 +55,6 @@ func (ctx *HandlerContext) UserSignUpHandler(w http.ResponseWriter, r *http.Requ
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusCreated)
 		w.Write(validUserJSON)
-
 	} else {
 		// 405 Method Not Allowed
 		http.Error(w, "Must be a POST request method", http.StatusMethodNotAllowed)
@@ -105,57 +99,18 @@ func (ctx *HandlerContext) UserLoginHandler(w http.ResponseWriter, r *http.Reque
 			return
 		}
 
+		// TODO: REMOVE THIS
 		// Start new session with returning user
-		ctx.newSession(returningUser, w)
+		// ctx.newSession(returningUser, w)
+
 		userJSON, _ := json.Marshal(returningUser)
 		// Set content-type, respond with 200 status, send user as JSON
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusOK)
 		w.Write(userJSON)
 
-	} else if r.Method == "GET" {
-		var sessionState SessionState
-		_, err := sessions.GetState(r, ctx.SigningKey, ctx.SessionStore, &sessionState)
-		if err != nil {
-			http.Error(w, "user is not logged in", http.StatusUnauthorized)
-			return
-		}
-		userJSON, err := json.Marshal(sessionState.User)
-		if err != nil {
-			http.Error(w, "internal server error", http.StatusInternalServerError)
-			return
-		}
-		w.Header().Set("Content-Type", "application/json")
-		w.WriteHeader(http.StatusOK)
-		w.Write(userJSON)
-
-	} else if r.Method == "DELETE" {
-		// Ends session of the current user
-		_, err := sessions.EndSession(r, ctx.SigningKey, ctx.SessionStore)
-		if err != nil {
-			// 500 Internal Server Error
-			http.Error(w, "Error ending session and logging out", http.StatusInternalServerError)
-			return
-		}
-		w.Header().Set("Content-Type", "text/plain")
-		w.WriteHeader(http.StatusOK)
-		w.Write([]byte("user successfully logged out"))
-
 	} else {
-		http.Error(w, "Must be a POST or DELETE or GET request method", http.StatusMethodNotAllowed)
+		http.Error(w, "Must be a POST", http.StatusMethodNotAllowed)
 		return
-	}
-}
-
-// newSession creates a new session whenever a user signs up or logs in
-func (ctx *HandlerContext) newSession(validUser *users.User, w http.ResponseWriter) {
-	var state SessionState
-	state.User = validUser
-	state.StartTime = time.Now()
-
-	_, err := sessions.BeginSession(ctx.SigningKey, ctx.SessionStore, state, w)
-
-	if err != nil {
-		fmt.Println("Error while creating new session")
 	}
 }

@@ -1,8 +1,8 @@
 package handlers
 
 import (
-	"github.com/matthewputra/worldwide/server/gateway/models/users"
-	"github.com/matthewputra/worldwide/server/gateway/sessions"
+	"worldwide/server/gateway/models/users"
+	"worldwide/server/gateway/sessions"
 )
 
 type HandlerContext struct {

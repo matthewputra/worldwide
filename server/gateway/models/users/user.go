@@ -1,7 +1,6 @@
 package users
 
 import (
-	"errors"
 	"fmt"
 	"net/mail"
 	"strings"
@@ -18,8 +17,8 @@ type User struct {
 	Email     string `json:"email"`
 	PassHash  []byte `json:"-"` //never JSON encoded/decoded
 	UserName  string `json:"userName"`
-	FirstName string `json:"firstName"`
-	LastName  string `json:"lastName"`
+	/*FirstName string `json:"firstName"`
+	LastName  string `json:"lastName"`*/
 }
 
 //Credentials represents user sign-in credentials
@@ -34,8 +33,8 @@ type NewUser struct {
 	Password     string `json:"password"`
 	PasswordConf string `json:"passwordConf"`
 	UserName     string `json:"userName"`
-	FirstName    string `json:"firstName"`
-	LastName     string `json:"lastName"`
+	/*FirstName    string `json:"firstName"`
+	LastName     string `json:"lastName"`*/
 }
 
 //Updates represents allowed updates to a user profile
@@ -89,8 +88,8 @@ func (nu *NewUser) ToUser() (*User, error) {
 
 	var validUser User
 	validUser.UserName = nu.UserName
-	validUser.FirstName = nu.FirstName
-	validUser.LastName = nu.LastName
+	/*validUser.FirstName = nu.FirstName
+	validUser.LastName = nu.LastName*/
 	validUser.Email = nu.Email
 
 	passwordErr := validUser.SetPassword(nu.Password)
@@ -106,10 +105,9 @@ func (nu *NewUser) ToUser() (*User, error) {
 //If either first or last name is an empty string, no
 //space is put between the names. If both are missing,
 //this returns an empty string
-func (u *User) FullName() string {
-	//implement according to comment above
-	return strings.TrimSpace(u.FirstName + " " + u.LastName)
-}
+//func (u *User) FullName() string {
+//	return strings.TrimSpace(u.FirstName + " " + u.LastName)
+//}
 
 //SetPassword hashes the password and stores it in the PassHash field
 func (u *User) SetPassword(password string) error {
@@ -138,15 +136,15 @@ func (u *User) Authenticate(password string) error {
 
 //ApplyUpdates applies the updates to the user. An error
 //is returned if the updates are invalid
-func (u *User) ApplyUpdates(updates *Updates) error {
-	// Check updates valid or not
-	if updates == nil {
-		return errors.New("Given updates are nil")
-	}
-	if updates.FirstName == "" && updates.LastName == "" {
-		return errors.New("Given updates are empty")
-	}
-	u.FirstName = updates.FirstName
-	u.LastName = updates.LastName
-	return nil
-}
+//func (u *User) ApplyUpdates(updates *Updates) error {
+//	// Check updates valid or not
+//	if updates == nil {
+//		return errors.New("Given updates are nil")
+//	}
+//	if updates.FirstName == "" && updates.LastName == "" {
+//		return errors.New("Given updates are empty")
+//	}
+//	u.FirstName = updates.FirstName
+//	u.LastName = updates.LastName
+//	return nil
+//}

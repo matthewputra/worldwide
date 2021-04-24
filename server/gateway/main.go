@@ -3,11 +3,12 @@ package main
 import (
 	"database/sql"
 	"fmt"
-	"github.com/matthewputra/worldwide/server/gateway/handlers"
-	"github.com/matthewputra/worldwide/server/gateway/models/users"
+	_ "github.com/go-sql-driver/mysql"
 	"log"
 	"net/http"
 	"os"
+	"worldwide/server/gateway/handlers"
+	"worldwide/server/gateway/models/users"
 )
 
 func main() {
@@ -38,18 +39,16 @@ func main() {
 
 	mux := http.NewServeMux()
 
-	// Handlers for logging in and signing up new customers/drivers
+	// Handlers for logging in and signing up new users
 	ctx := &handlers.HandlerContext{SigningKey: "key", SessionStore: nil, UserStore: users.NewMySQLStore(db)}
-	mux.HandleFunc("/v1/signup", ctx.UsersSignUpHandler)
-	mux.HandleFunc("/v1/login", ctx.UserLoginHandler)
-	//
-	sqlStore := users.NewSqlStore(db)
-	sqlStore.
+	mux.HandleFunc("/signup", ctx.UserSignUpHandler)
+	mux.HandleFunc("/login", ctx.UserLoginHandler)
 
-		// TODO: remove this handler
-		mux.HandleFunc("/test", func(w http.ResponseWriter, r *http.Request) {
+	// TODO: remove this handler
+	mux.HandleFunc("/test", func(w http.ResponseWriter, r *http.Request) {
 		_, _ = w.Write([]byte("Test"))
 	})
+	wrappedMux := handlers.NewCors(mux)
 	log.Printf("Server is listening at %s...", ADDR)
-	log.Fatal(http.ListenAndServeTLS(ADDR, TLSCERT, TLSKEY, mux))
+	log.Fatal(http.ListenAndServeTLS(ADDR, TLSCERT, TLSKEY, wrappedMux))
 }
