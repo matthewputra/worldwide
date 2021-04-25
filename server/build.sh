@@ -9,3 +9,8 @@ docker push matthewputra/capstone-gateway
 cd ../db
 docker build -t matthewputra/capstone-mysql .
 docker push matthewputra/capstone-mysql
+
+# Create docker image for question
+cd ../question
+docker build -t matthewputra/capstone-question .
+docker push matthewputra/capstone-question

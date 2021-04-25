@@ -36,3 +36,17 @@ docker run \
   -e MYSQL_DATABASE=$MYSQL_DATABASE \
   --restart unless-stopped \
   matthewputra/capstone-mysql
+
+# Generate docker container from question image
+docker rm -f questionContainer
+docker pull matthewputra/capstone-question
+
+export MESSAGESADDR="questionContainer:5200"
+
+docker run \
+  --network serverNetwork \
+  --restart unless-stopped \
+  -e MESSAGESADDR=$MESSAGESADDR \
+  --name questionContainer \
+  --restart unless-stopped \
+  matthewputra/capstone-question
