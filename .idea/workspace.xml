@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5bbaf774-2744-4d06-a9c1-8562d54478d6" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/server/build.sh" beforeDir="false" afterPath="$PROJECT_DIR$/server/build.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/gateway/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/gateway/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/question/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/question/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/update.sh" beforeDir="false" afterPath="$PROJECT_DIR$/server/update.sh" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -49,17 +51,5 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="412" y="253" key="FileDocumentManager.FileCacheConflict/0.0.1440.900@0.0.1440.900" timestamp="1619307998513" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/server/question/handlers/specificCourseQuestionHandler.js</url>
-          <line>89</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

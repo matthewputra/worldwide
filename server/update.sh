@@ -6,6 +6,7 @@ export TLSKEY=/etc/letsencrypt/live/api.ilearncapstone.com/privkey.pem
 export MYSQL_DATABASE="capstoneMySqlDB"
 export MYSQL_ROOT_PASSWORD="serversidedb"
 export DSN="root:$MYSQL_ROOT_PASSWORD@tcp(mysqlContainer:3306)/$MYSQL_DATABASE"
+export QUESTIONSADDR="questionContainer:5200"
 
 # Generate docker container from gateway image
 docker rm -f gatewayContainer
@@ -17,6 +18,7 @@ docker run \
   -e TLSCERT=$TLSCERT \
   -e TLSKEY=$TLSKEY \
   -e DSN=$DSN \
+  -e QUESTIONSADDR=$QUESTIONSADDR \
   -p 443:443 \
   -v /etc/letsencrypt:/etc/letsencrypt:ro \
   --restart unless-stopped \
@@ -41,12 +43,19 @@ docker run \
 docker rm -f questionContainer
 docker pull matthewputra/capstone-question
 
-export MESSAGESADDR="questionContainer:5200"
-
 docker run \
   --network serverNetwork \
   --restart unless-stopped \
-  -e MESSAGESADDR=$MESSAGESADDR \
+  -e QUESTIONSADDR=$QUESTIONSADDR \
   --name questionContainer \
-  --restart unless-stopped \
   matthewputra/capstone-question
+
+# Generate docker container for mongo
+docker rm -f mongoContainer
+docker run \
+  -d \
+  --network serverNetwork \
+  --name mongoContainer \
+  mongo
+
+exit
