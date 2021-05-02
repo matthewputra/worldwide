@@ -1,6 +1,6 @@
 const mongooes=require('mongoose')
-
-mongooes.connect(process.env.MONGODB_URL,{
+// process.env.MONGODB_URL
+mongooes.connect('mongodb://mongoContainer:27017/worldwide',{
     useNewUrlParser:true,
     useCreateIndex:true,
     useUnifiedTopology:true,

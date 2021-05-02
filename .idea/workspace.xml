@@ -21,8 +21,7 @@
   <component name="ChangeListManager">
     <list default="true" id="5bbaf774-2744-4d06-a9c1-8562d54478d6" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/question/.env" beforeDir="false" afterPath="$PROJECT_DIR$/server/question/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/question/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/server/question/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/question/database/config/connection.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/question/database/config/connection.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
