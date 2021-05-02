@@ -39,6 +39,14 @@ docker run \
   --restart unless-stopped \
   matthewputra/capstone-mysql
 
+# Generate docker container for mongo
+docker rm -f mongoContainer
+docker run \
+  -d \
+  --network serverNetwork \
+  --name mongoContainer \
+  mongo
+
 # Generate docker container from question image
 docker rm -f questionContainer
 docker pull matthewputra/capstone-question
@@ -50,12 +58,5 @@ docker run \
   --name questionContainer \
   matthewputra/capstone-question
 
-# Generate docker container for mongo
-docker rm -f mongoContainer
-docker run \
-  -d \
-  --network serverNetwork \
-  --name mongoContainer \
-  mongo
 
 exit

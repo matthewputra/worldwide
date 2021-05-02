@@ -1,47 +1,51 @@
-const mongoose = require('mongoose')
-const express = require('express')
-const { questionSchema } = require('./schemas/question')
-const { getCourseBasedQuestionHandler, postCourseBasedQuestionHandler} = require('./handlers/specificCourseQuestionHandler')
-const mongoEndpoint = 'mongodb://mongoContainer:27017/questions?authSource=admin'
+// const mongoose = require('mongoose')
+// const express = require('express')
+// const { questionSchema } = require('./schemas/question')
+// const { getCourseBasedQuestionHandler, postCourseBasedQuestionHandler} = require('./handlers/specificCourseQuestionHandler')
+// const mongoEndpoint = 'mongodb://mongoContainer:27017/questions?authSource=admin'
+const express=require('express');
+const bodyParser=require('body-parser');
+const cors=require('cors');
 
-const app = express()
-app.use(express.json())
+require('dotenv').config();
+require('./database/config/connection');
 
-// Models for MongoDB
-const Question = mongoose.model("Question", questionSchema)
 
-// Start mongoDB connection
-const connect = () => {
-    mongoose.connect(mongoEndpoint, function(err) {
-        if (err) {
-            console.error('Failed to connect to mongo on startup - retrying in 5 sec', err);
-            setTimeout(connect, 5000);
-        }
+const app=express();
+const port=process.env.PORT || 5000;
+
+app.use(cors());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended:true}));
+
+app.get('/',(req,res)=>{
+    res.send({
+        msg:"hello"
     })
-}
+})
 
-// Data passer function for handlers
-const RequestWrapper = (handler, DataPasser) => {
-    return (req, res) => {
-        handler(req, res, DataPasser)
-    }
-}
+const userProfileRouter=require('./routers/user_profile');
+const courseRouter=require('./routers/course');
+const questionModuleRouter=require('./routers/question_module');
+const userProgressRouter=require('./routers/user_progress');
+const userSettingRouter=require('./routers/user_settings');
 
-// Start routing handlers here
-app.route('/question')
-    .get(RequestWrapper(getCourseBasedQuestionHandler, { Question }))
-    .post(RequestWrapper(postCourseBasedQuestionHandler, { Question }))
+app.use(userProfileRouter);
+app.use(courseRouter);
+app.use(questionModuleRouter);
+app.use(userProgressRouter);
+app.use(userSettingRouter);
 
-connect()
-mongoose.connection.on('error', console.error)
-    .on('disconnected', connect)
-    .once('open', main)
-
-async function main() {
-    const addr = process.env.QUESTIONSADDR || "questionContainer:5200"
-    const [host, port] = addr.split(":")
-
-    app.listen(Number(port), host, () => {
-        console.log(`server listening at port ${port}`)
+/////error handling route
+app.use((error, req, res, next) => {
+    res.send({
+        status: false,
+        code:400,
+        error: error.message
     })
-}
+})
+
+
+app.listen(port,()=>{
+    console.log('server is running at port',port);
+})

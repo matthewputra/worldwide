@@ -1,11 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="5bbaf774-2744-4d06-a9c1-8562d54478d6" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/server/question/.dockerignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/gateway/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/gateway/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/question/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/question/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/update.sh" beforeDir="false" afterPath="$PROJECT_DIR$/server/update.sh" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,10 +50,13 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
-    <property name="last_opened_file_path" value="$USER_HOME$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/server/question" />
     <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/server/question" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/server/question" />
     </key>
@@ -46,10 +65,49 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="WindowStateProjectService">
+    <state x="442" y="259" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1619938491833">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="442" y="259" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1440.900@0.0.1440.900" timestamp="1619938491833" />
+    <state x="458" y="204" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1619931916941">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="458" y="204" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1440.900@0.0.1440.900" timestamp="1619931916941" />
     <state x="412" y="253" key="FileDocumentManager.FileCacheConflict" timestamp="1619307998513">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="412" y="253" key="FileDocumentManager.FileCacheConflict/0.0.1440.900@0.0.1440.900" timestamp="1619307998513" />
+    <state width="1398" height="245" key="GridCell.Tab.0.bottom" timestamp="1619932653744">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="245" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1619932653744" />
+    <state width="1398" height="245" key="GridCell.Tab.0.center" timestamp="1619932653742">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="245" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1619932653742" />
+    <state width="1398" height="245" key="GridCell.Tab.0.left" timestamp="1619932653741">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="245" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1619932653741" />
+    <state width="1398" height="245" key="GridCell.Tab.0.right" timestamp="1619932653743">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="245" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1619932653743" />
+    <state x="308" y="200" key="IDE.errors.dialog" timestamp="1619370234750">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="308" y="200" key="IDE.errors.dialog/0.0.1440.900@0.0.1440.900" timestamp="1619370234750" />
   </component>
 </project>
