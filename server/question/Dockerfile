@@ -1,7 +1,7 @@
 FROM node
 WORKDIR /app
 COPY package.json package-lock.json ./
+COPY . .
 RUN npm install
-COPY . .m
 EXPOSE 5200
-ENTRYPOINT ["node", "/app/index.js"]
+CMD ["node", "/app/index.js"]
