@@ -12,12 +12,7 @@ const Question = mongoose.model("Question", questionSchema)
 
 // Start mongoDB connection
 const connect = () => {
-    mongoose.connect(mongoEndpoint, function(err) {
-        if (err) {
-            console.error('Failed to connect to mongo on startup - retrying in 5 sec', err);
-            setTimeout(connect, 5000);
-        }
-    })
+    mongoose.connect(mongoEndpoint)
 }
 
 // Data passer function for handlers
